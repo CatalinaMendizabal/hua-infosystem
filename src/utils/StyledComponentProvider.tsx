@@ -12,6 +12,7 @@ const StyledComponentProvider = ({children}: StyleComponentProviderProps) => {
         infoGray1: "#f5f5f5",
         infoGray2: "#444",
         infoBlue: "#062990",
+        hoverBlue: "#6785db"
     }
     return <ThemeProvider theme={theme}>{children}</ThemeProvider>
 }
