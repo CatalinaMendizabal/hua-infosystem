@@ -6,6 +6,8 @@ import {
     // StyledOptionButtonsContainer,
     StyledLogoAndName
 } from "./style";
+import {StyledButton} from "../commonComponents/button";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
 
@@ -17,9 +19,12 @@ const Navbar = () => {
                     | Info System
                 </StyledNavbarTitle>
             </StyledLogoAndName>
-            {/*<StyledOptionButtonsContainer>
-                <button>Home</button>
-            </StyledOptionButtonsContainer>*/}
+            <StyledButton>
+                <Link to={'/record'}>Record</Link>
+            </StyledButton>
+            <StyledButton>
+                <Link to={'/results'}>Results</Link>
+            </StyledButton>
         </StyledNavbar>
     )
 }
