@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import TimeCounter from "./TimeCounter";
-import {ButtonContainer, StyledContainer} from "./styles";
-import {StyledButton} from "../../components/commonComponents/button";
-import {ReactMediaRecorder} from "react-media-recorder";
+import {ButtonContainer, StyledContainer, VerticalContainer} from "./styles";
+import {StyledButton} from "../../components/commonComponents/buttonStyle";
 
 interface Props {
     startRecording: () => void,
@@ -13,7 +12,6 @@ interface Props {
 const Recorder = ({ startRecording, stopRecording, pauseRecording, resumeRecording }:Props) => {
     const [startDate, setStartDate] = useState<Date | undefined>(undefined)
     const [stopDate, setStopDate] = useState<Date | undefined>(undefined)
-
     const onStartRecording = () => {
         startRecording()
         setStartDate(new Date())
@@ -40,7 +38,7 @@ const Recorder = ({ startRecording, stopRecording, pauseRecording, resumeRecordi
     }
 
     return (
-        <StyledContainer>
+        <VerticalContainer>
             <TimeCounter startDate={startDate} stopDate={stopDate} />
             <ButtonContainer>
                 {!startDate && <StyledButton onClick={onStartRecording}>Start recording</StyledButton>}
@@ -48,7 +46,7 @@ const Recorder = ({ startRecording, stopRecording, pauseRecording, resumeRecordi
                 {(startDate && !stopDate) && <StyledButton onClick={onPauseRecording}>Pause</StyledButton>}
                 {stopDate && <StyledButton onClick={onResumeRecording}>Resume</StyledButton>}
             </ButtonContainer>
-        </StyledContainer>
+        </VerticalContainer>
     );
 };
 

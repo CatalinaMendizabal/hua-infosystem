@@ -6,7 +6,7 @@ import {
     // StyledOptionButtonsContainer,
     StyledLogoAndName
 } from "./style";
-import {StyledButton} from "../commonComponents/button";
+import {StyledButton} from "../commonComponents/buttonStyle";
 import {Link} from "react-router-dom";
 
 const Navbar = () => {

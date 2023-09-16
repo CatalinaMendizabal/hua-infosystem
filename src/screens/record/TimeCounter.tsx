@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {H2} from "../../components/commonComponents/text";
+import {H2} from "../../components/commonComponents/textStyle";
 
 interface Props {
     startDate:Date|undefined

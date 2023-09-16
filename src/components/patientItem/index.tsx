@@ -1,9 +1,9 @@
 import React from 'react';
-import {SmallP} from "../commonComponents/text";
+import {SmallP} from "../commonComponents/textStyle";
 import {IconContainer, PatientItemContainer} from "./style";
 import recordIcon from '../../../assets/record.svg'
-import {Icon} from "../commonComponents/icon";
-import {StyledButton} from "../commonComponents/button";
+import {StyledButton} from "../commonComponents/buttonStyle";
+import {Icon} from "../commonComponents/Icon";
 
 interface Props {
     patientHistory: number

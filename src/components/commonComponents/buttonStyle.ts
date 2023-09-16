@@ -10,6 +10,7 @@ export const StyledButton = styled.button`
   color: #ffffff;
   background-color: ${(props) => props.theme.infoBlue};
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  flex:1;
 
   &:hover {
     background-color: ${(props) => props.theme.hoverBlue};
