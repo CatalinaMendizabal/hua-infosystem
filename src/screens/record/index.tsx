@@ -95,11 +95,14 @@ const RecordingScreen = () => {
         if (selectedHistory && responseData) {
             const airtable = connectToAirTable()
             localStorage.setItem(`${selectedHistory}`, responseData.content)
+            const date = new Date()
+            const offset = date.getTimezoneOffset()
+            const adjustedDate = new Date(date.getTime() - (offset*60*1000))
             airtable.create({
-                Date: `${new Date()}`,
+                Date: `${adjustedDate.toISOString().split('T')[0]}`,
                 Form: selectedForm,
                 Diagnosis: responseData.content,
-                Documents: responseData.files.map((f) => f.value)
+                // Documents: responseData.files.map((f) => f.value)
             }).then(() => navigate("/results"))
         }
 
