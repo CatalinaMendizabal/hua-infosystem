@@ -6,25 +6,34 @@ import {
     // StyledOptionButtonsContainer,
     StyledLogoAndName
 } from "./style";
-import {StyledButton} from "../commonComponents/buttonStyle";
-import {Link} from "react-router-dom";
+import {InvertedStyleButton, StyledButton} from "../commonComponents/buttonStyle";
+import {Link, useNavigate} from "react-router-dom";
+import {NavigationButtonContainer} from "../structure/styles";
 
 const Navbar = () => {
 
+    const navigate = useNavigate()
+
     return (
         <StyledNavbar>
-            <StyledLogoAndName>
+            <StyledLogoAndName onClick={() => navigate("/")}>
                 <StyledNavbarLogo/>
                 <StyledNavbarTitle>
                     | Info System
                 </StyledNavbarTitle>
             </StyledLogoAndName>
-            <StyledButton>
-                <Link to={'/record'}>Record</Link>
-            </StyledButton>
-            <StyledButton>
-                <Link to={'/results'}>Results</Link>
-            </StyledButton>
+            <NavigationButtonContainer>
+                <div>
+                    <InvertedStyleButton onClick={() => navigate("/record")}>
+                        Record
+                    </InvertedStyleButton>
+                </div>
+                <div>
+                    <InvertedStyleButton onClick={() => navigate("/results")}>
+                        Results
+                    </InvertedStyleButton>
+                </div>
+            </NavigationButtonContainer>
         </StyledNavbar>
     )
 }

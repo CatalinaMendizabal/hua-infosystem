@@ -6,3 +6,9 @@ export const StyledStructure = styled.div`
     align-items: center;
     justify-content: center;
 `
+export const NavigationButtonContainer = styled.div`
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-right: 40px;
+`

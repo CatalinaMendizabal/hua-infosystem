@@ -102,6 +102,7 @@ const RecordingScreen = () => {
                 Date: `${adjustedDate.toISOString().split('T')[0]}`,
                 Form: selectedForm,
                 Diagnosis: responseData.content,
+                History_number: selectedHistory
                 // Documents: responseData.files.map((f) => f.value)
             }).then(() => navigate("/results"))
         }
