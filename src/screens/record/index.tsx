@@ -93,17 +93,22 @@ const RecordingScreen = () => {
     const handleSubmitResponse= (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (selectedHistory && responseData) {
-            const airtable = connectToAirTable()
             localStorage.setItem(`${selectedHistory}`, responseData.content)
             const date = new Date()
             const offset = date.getTimezoneOffset()
             const adjustedDate = new Date(date.getTime() - (offset*60*1000))
-            airtable.create({
-                Date: `${adjustedDate.toISOString().split('T')[0]}`,
-                Form: selectedForm,
-                Diagnosis: responseData.content,
-                History_number: selectedHistory
-                // Documents: responseData.files.map((f) => f.value)
+            fetch('http://localhost:8080/add-record', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    Date: `${adjustedDate.toISOString().split('T')[0]}`,
+                    Form: selectedForm,
+                    Diagnosis: responseData.content,
+                    History_number: selectedHistory,
+                    Documents: responseData.files.map((f) => ({url: f.value}))
+                }),
             }).then(() => navigate("/results"))
         }
 

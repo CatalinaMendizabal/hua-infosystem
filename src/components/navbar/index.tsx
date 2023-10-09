@@ -6,8 +6,8 @@ import {
     // StyledOptionButtonsContainer,
     StyledLogoAndName
 } from "./style";
-import {InvertedStyleButton, StyledButton} from "../commonComponents/buttonStyle";
-import {Link, useNavigate} from "react-router-dom";
+import {InvertedStyleButton} from "../commonComponents/buttonStyle";
+import {useNavigate} from "react-router-dom";
 import {NavigationButtonContainer} from "../structure/styles";
 
 const Navbar = () => {
