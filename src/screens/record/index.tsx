@@ -4,7 +4,7 @@ import Recorder from "./Recorder";
 import Select from "../../components/commonComponents/Select";
 import {FORM_TYPES, STRUCTURE_MAP} from "../../utils/formTypes";
 import {
-    ItemsContainer,
+    ItemsContainer, LimitedVerticalContainer,
     ModifyResponseTextArea,
     StructureContainer,
     StructureItem,
@@ -20,6 +20,7 @@ import {Input} from "../../components/commonComponents/inputStyle";
 import {connectToAirTable} from "../../utils/connectToAirTable";
 import {useNavigate} from "react-router-dom";
 import Loader from "../../components/commonComponents/Loader";
+import FileDisplay from "./FileDisplay";
 
 const RecordingScreen = () => {
     const {startRecording, stopRecording, mediaBlobUrl, pauseRecording, resumeRecording} = useReactMediaRecorder({audio: true})
@@ -81,15 +82,6 @@ const RecordingScreen = () => {
         }
     }
 
-    const deleteRelatedFile = (fileName:string) => {
-        if (responseData) {
-            setResponse({
-                ...responseData,
-                files: responseData.files.filter((f) => f.name !== fileName)
-            })
-        }
-    }
-
     const handleSubmitResponse= (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (selectedHistory && responseData) {
@@ -114,22 +106,28 @@ const RecordingScreen = () => {
 
     }
 
+    const onRemoveFile = (fileId:number) => {
+        if (responseData)
+            setResponse({...responseData, files: responseData.files.filter((_:any, index:number) => index !== fileId)})
+    }
+
     return <Structure>
         <StyledContainer>
             {responseData &&
                 <form onSubmit={(e) => handleSubmitResponse(e)}>
-                    <VerticalContainer>
+                    <LimitedVerticalContainer>
                             <ModifyResponseTextArea
                                 value={responseData.content}
                                 onChange={(e) => modifyResponseContent(e.target.value)}
                             />
+                            <FileDisplay files={responseData.files} onRemoveFile={onRemoveFile}/>
                             <Input
                                 type={"number"}
                                 placeholder={"Input patient history"}
                                 onChange={(e) => setSelectedHistory(parseInt(e.target.value))}
                             />
                             <StyledButton type={"submit"}>Save response</StyledButton>
-                    </VerticalContainer>
+                    </LimitedVerticalContainer>
                 </form>
             }
             {!responseData && !loading &&

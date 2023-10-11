@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import {DetailsContainer, ResultContainerStyle, ResultPreviewContainer} from "./styles";
-import {BoldP, SmallP} from "../../components/commonComponents/textStyle";
+import {BoldP, P, SmallP} from "../../components/commonComponents/textStyle";
 import {StyledButton} from "../../components/commonComponents/buttonStyle";
 import {Icon} from "../../components/commonComponents/Icon";
 import arrow from "../../assets/arrow.svg"
+import {useNavigate} from "react-router-dom";
 
 export interface Form {
     content: string,
-    formType: string
+    formType: string,
+    documents: any[]
 }
 
 interface Props {

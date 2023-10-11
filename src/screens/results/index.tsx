@@ -3,13 +3,13 @@ import Structure from "../../components/structure";
 import {ModalBackground, PaddedContainer, StyledContainer} from "./styles";
 import ResultContainer, {Form} from "./ResultContainer";
 import Loader from "../../components/commonComponents/Loader";
-import ContentModal from "./ContentModal";
+import ContentModal, {ModalContent} from "./ContentModal";
 import {groupBy} from "lodash";
 
 const Results = () => {
     const [records, setRecords] = useState<any>({})
     const [loading, setLoading] = useState(true)
-    const [modalContent, setModalContent] = useState<string|undefined>()
+    const [modalContent, setModalContent] = useState<ModalContent|undefined>()
     useEffect(() => {
         fetch('http://localhost:8080/get-records', {
             method: 'GET',
@@ -22,7 +22,8 @@ const Results = () => {
             }).map((record:any) => ({
                 form: {
                     content: record.fields?.Diagnosis || "",
-                    formType: record.fields?.Form || ""
+                    formType: record.fields?.Form || "",
+                    documents: record.fields?.Documents || []
                 },
                 historyNumber: record.fields?.History_number || ""
             }))
@@ -31,7 +32,8 @@ const Results = () => {
         }))
     }, [])
     const handleOpenModal = (f:Form) => {
-        setModalContent(f.content)
+        debugger
+        setModalContent({content: f.content, documents: f.documents})
     }
 
     return (
@@ -48,7 +50,7 @@ const Results = () => {
                         <ResultContainer
                             // @ts-ignore
                             forms={value.map((v:any) =>
-                                ({ content: `${v?.form.content}`, formType: `${v?.form.formType}`}))
+                                ({ content: `${v?.form.content}`, formType: `${v?.form.formType}`, documents: [].concat(v?.form.documents)}))
                             }
                             historyNumber={key}
                             openModal={handleOpenModal}

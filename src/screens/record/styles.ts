@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import {H3, P} from "../../components/commonComponents/textStyle";
 
+export const DocumentListContainer = styled.div`
+    max-height: 300px;
+    overflow: auto;
+`
+
+export const DocumentContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+`
+
 export const StyledContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -18,13 +29,20 @@ export const VerticalContainer = styled.div`
     align-items: center;
 `
 
+export const LimitedVerticalContainer = styled(VerticalContainer)`
+    max-width: 300px;
+`
+
 
 export const ButtonContainer = styled.div`
     display: flex;
     gap: 8px;
     align-items: center;
     justify-content: center;
-    width: 300px;
+`
+
+export const FixedButtonContainer = styled(ButtonContainer)`
+  width: 300px;
 `
 
 export const ItemsContainer = styled.div`
@@ -56,7 +74,7 @@ export const StructureItem = styled.div`
 `
 
 export const ModifyResponseTextArea = styled.textarea`
-  width: 300px;
+  width: 100%;
   min-height: 400px;
   padding: 10px;
   border: 1px solid #ccc;

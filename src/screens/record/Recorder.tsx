@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TimeCounter from "./TimeCounter";
-import {ButtonContainer, StyledContainer, VerticalContainer} from "./styles";
+import {ButtonContainer, FixedButtonContainer, StyledContainer, VerticalContainer} from "./styles";
 import {StyledButton} from "../../components/commonComponents/buttonStyle";
 
 interface Props {
@@ -40,12 +40,12 @@ const Recorder = ({ startRecording, stopRecording, pauseRecording, resumeRecordi
     return (
         <VerticalContainer>
             <TimeCounter startDate={startDate} stopDate={stopDate} />
-            <ButtonContainer>
+            <FixedButtonContainer>
                 {!startDate && <StyledButton onClick={onStartRecording}>Start recording</StyledButton>}
                 {startDate && <StyledButton onClick={onStopRecording}>Stop recording</StyledButton>}
                 {(startDate && !stopDate) && <StyledButton onClick={onPauseRecording}>Pause</StyledButton>}
                 {stopDate && <StyledButton onClick={onResumeRecording}>Resume</StyledButton>}
-            </ButtonContainer>
+            </FixedButtonContainer>
         </VerticalContainer>
     );
 };
