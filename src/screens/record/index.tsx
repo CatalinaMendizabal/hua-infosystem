@@ -50,7 +50,7 @@ const RecordingScreen = () => {
     useEffect(() => {
         if (base64Data) {
             setLoading(true)
-            fetch('http://localhost:8080/recognize', {
+            fetch('https://hua-infosystem-backend.vercel.app/recognize', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const RecordingScreen = () => {
             const date = new Date()
             const offset = date.getTimezoneOffset()
             const adjustedDate = new Date(date.getTime() - (offset*60*1000))
-            fetch('http://localhost:8080/add-record', {
+            fetch('https://hua-infosystem-backend.vercel.app/add-record', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
