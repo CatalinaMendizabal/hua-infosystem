@@ -17,7 +17,6 @@ import {useReactMediaRecorder} from "react-media-recorder-2";
 import {ProcessedData} from "../../utils/interfaces";
 import {StyledButton} from "../../components/commonComponents/buttonStyle";
 import {Input} from "../../components/commonComponents/inputStyle";
-import {connectToAirTable} from "../../utils/connectToAirTable";
 import {useNavigate} from "react-router-dom";
 import Loader from "../../components/commonComponents/Loader";
 import FileDisplay from "./FileDisplay";
@@ -60,6 +59,7 @@ const RecordingScreen = () => {
             })
                 .then((response) => response.json())
                 .then((data) => {
+                    debugger
                     const normalizedData:ProcessedData = {
                         content: data?.response?.content || '',
                         files: data?.files || []
@@ -99,7 +99,7 @@ const RecordingScreen = () => {
                     Form: selectedForm,
                     Diagnosis: responseData.content,
                     History_number: selectedHistory,
-                    Documents: responseData.files.map((f) => ({url: f.value}))
+                    Documents: responseData.files.map((f) => ({Name: f.name, Url: f.value}))
                 }),
             }).then(() => navigate("/results"))
         }

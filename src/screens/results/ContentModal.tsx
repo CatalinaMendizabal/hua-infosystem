@@ -19,7 +19,7 @@ const ContentModal = ({content, close}:Props) => {
                 <SmallP>{content.content}</SmallP>
                 {content.documents.map(d =>
                     <ResultPreviewContainer>
-                    <P>{d.filename}</P>
+                    <P>{d.name}</P>
                     <a href={d.url}>Open</a>
                     </ResultPreviewContainer>)}
                 <div>

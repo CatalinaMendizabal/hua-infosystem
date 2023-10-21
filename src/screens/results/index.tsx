@@ -23,7 +23,7 @@ const Results = () => {
                 form: {
                     content: record.fields?.Diagnosis || "",
                     formType: record.fields?.Form || "",
-                    documents: record.fields?.Documents || []
+                    documents: record.fields?.document_name?.map((doc_name : any, index: number) => ({name: doc_name, url: record.fields?.document_url[index]})) || []
                 },
                 historyNumber: record.fields?.History_number || ""
             }))
@@ -31,8 +31,8 @@ const Results = () => {
             setLoading(false)
         }))
     }, [])
+    debugger
     const handleOpenModal = (f:Form) => {
-        debugger
         setModalContent({content: f.content, documents: f.documents})
     }
 
