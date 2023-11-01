@@ -11,7 +11,7 @@ const Results = () => {
     const [loading, setLoading] = useState(true)
     const [modalContent, setModalContent] = useState<ModalContent|undefined>()
     useEffect(() => {
-        fetch('https://hua-infosystem-backend.vercel.app/get-records', {
+        fetch('https://ec2-3-144-252-33.us-east-2.compute.amazonaws.com/get-records', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
