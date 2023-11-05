@@ -11,7 +11,7 @@ const Results = () => {
     const [loading, setLoading] = useState(true)
     const [modalContent, setModalContent] = useState<ModalContent|undefined>()
     useEffect(() => {
-        fetch('http://ec2-18-118-217-154.us-east-2.compute.amazonaws.com:80/get-records', {
+        fetch('https://huainfosystem.publicvm.com/get-records', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

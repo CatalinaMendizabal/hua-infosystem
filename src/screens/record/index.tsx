@@ -50,7 +50,7 @@ const RecordingScreen = () => {
     useEffect(() => {
         if (base64Data) {
             setLoading(true)
-            fetch('http://ec2-18-118-217-154.us-east-2.compute.amazonaws.com:80/recognize', {
+            fetch('https://huainfosystem.publicvm.com/recognize', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const RecordingScreen = () => {
             const date = new Date()
             const offset = date.getTimezoneOffset()
             const adjustedDate = new Date(date.getTime() - (offset*60*1000))
-            fetch('http://ec2-18-118-217-154.us-east-2.compute.amazonaws.com:80/add-record', {
+            fetch('https://huainfosystem.publicvm.com/add-record', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
