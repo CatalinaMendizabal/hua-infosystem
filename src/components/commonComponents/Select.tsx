@@ -9,15 +9,19 @@ const StyledSelect = styled.select`
   outline: none;
   width: 300px;
 `
+interface Value {
+    value: string,
+    label: string
+}
 
 interface Props {
-    values: string[],
+    values: Value[],
     setSelected: (v:string) => void
 }
 const Select = ({values, setSelected}:Props) => {
     return (
         <StyledSelect onChange={(e) => setSelected(e.target.value)}>
-            {values.map((v) => <option value={v}>{v}</option>)}
+            {values.map((v) => <option value={v.value}>{v.label}</option>)}
         </StyledSelect>
     );
 };

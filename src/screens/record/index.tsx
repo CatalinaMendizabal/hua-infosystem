@@ -2,7 +2,7 @@ import React, {useState, useEffect, FormEvent} from 'react'
 import Structure from "../../components/structure";
 import Recorder from "./Recorder";
 import Select from "../../components/commonComponents/Select";
-import {FORM_TYPES, STRUCTURE_MAP} from "../../utils/formTypes";
+import {FORM_LABELS, FORM_TYPES, STRUCTURE_MAP} from "../../utils/formTypes";
 import {
     ItemsContainer, LimitedVerticalContainer,
     ModifyResponseTextArea,
@@ -50,7 +50,7 @@ const RecordingScreen = () => {
     useEffect(() => {
         if (base64Data) {
             setLoading(true)
-            fetch('https://hua-infosystem.publicvm.com/recognize', {
+            fetch('https://hua-infosystem-test.publicvm.com/recognize', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,8 @@ const RecordingScreen = () => {
             const date = new Date()
             const offset = date.getTimezoneOffset()
             const adjustedDate = new Date(date.getTime() - (offset*60*1000))
-            fetch('https://hua-infosystem.publicvm.com/add-record', {
+            setLoading(true)
+            fetch('https://hua-infosystem-test.publicvm.com/add-record', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -101,7 +102,10 @@ const RecordingScreen = () => {
                     History_number: selectedHistory,
                     Documents: responseData.files.map((f) => ({Name: f.name, Url: f.value}))
                 }),
-            }).then(() => navigate("/results"))
+            }).then(() => {
+                setLoading(false)
+                navigate("/results")
+            })
         }
 
     }
@@ -113,7 +117,7 @@ const RecordingScreen = () => {
 
     return <Structure>
         <StyledContainer>
-            {responseData &&
+            {responseData && !loading &&
                 <form onSubmit={(e) => handleSubmitResponse(e)}>
                     <LimitedVerticalContainer>
                             <ModifyResponseTextArea
@@ -133,7 +137,7 @@ const RecordingScreen = () => {
             {!responseData && !loading &&
                 <ItemsContainer>
                     <VerticalContainer>
-                        <Select values={FORM_TYPES} setSelected={setSelectedForm} />
+                        <Select values={FORM_TYPES.map(type => ({value: type, label: FORM_LABELS[type]}))} setSelected={setSelectedForm} />
                         <Recorder
                             startRecording={startRecording}
                             stopRecording={stopRecording}
