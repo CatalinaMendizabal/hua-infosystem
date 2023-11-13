@@ -50,7 +50,7 @@ const RecordingScreen = () => {
     useEffect(() => {
         if (base64Data) {
             setLoading(true)
-            fetch('https://hua-infosystem-test.publicvm.com/recognize', {
+            fetch('https://huainfosystem.online/recognize', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const RecordingScreen = () => {
             const offset = date.getTimezoneOffset()
             const adjustedDate = new Date(date.getTime() - (offset*60*1000))
             setLoading(true)
-            fetch('https://hua-infosystem-test.publicvm.com/add-record', {
+            fetch('https://huainfosystem.online/add-record', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
